@@ -1,0 +1,41 @@
+module.exports = {
+  // 每行代码的最大长度
+  printWidth: 100,
+  // 缩进空格数
+  tabWidth: 2,
+  // 使用空格代替制表符
+  useTabs: false,
+  // 语句末尾是否加分号
+  semi: true,
+  // 使用单引号代替双引号
+  singleQuote: true,
+  // 对象属性是否使用引号（as-needed：仅必要时使用）
+  quoteProps: 'as-needed',
+  // JSX 中使用单引号
+  jsxSingleQuote: false,
+  // 多行逗号分隔的语法中，最后一个元素后面是否加逗号
+  trailingComma: 'es5', // none | es5 | all
+  // 括号内是否保留空格（例如：{ foo: bar }）
+  bracketSpacing: true,
+  // JSX 标签多行写法时，尖括号是否换行
+  bracketSameLine: false,
+  // 箭头函数参数是否加括号（always：总是加；avoid：单个参数时省略）
+  arrowParens: 'always',
+  // 格式化的范围（默认：整个文件）
+  rangeStart: 0,
+  rangeEnd: Infinity,
+  // 是否需要在文件顶部插入 @format 标记才格式化
+  requirePragma: false,
+  // 格式化后是否在文件顶部插入 @format 标记
+  insertPragma: false,
+  // Markdown 折行方式（wrap：自动折行；never：不折行）
+  proseWrap: 'preserve',
+  // HTML 空白处的处理方式
+  htmlWhitespaceSensitivity: 'css',
+  // Vue 单文件组件中 script 和 style 标签内的缩进
+  vueIndentScriptAndStyle: false,
+  // 换行符类型（lf | cr | crlf）
+  endOfLine: 'lf',
+  // 是否格式化嵌入在 HTML 中的代码
+  embeddedLanguageFormatting: 'auto' // auto | off
+};
