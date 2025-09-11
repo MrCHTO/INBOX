@@ -16,10 +16,20 @@ from numpy.core.fromnumeric import shape
 
 #  实例化张量
 x = Tensor(np.array([1.0, 2.0, 3.0, 4.0]), mstype.float64)
-y = mindspore.Tensor(np.array([[8, 4, 2, 1], [8, 4, 2, 1], [
-                     8, 4, 2, 1], [8, 4, 2, 1]]), mindspore.int32)
-z = mindspore.Tensor(np.array([[2.0, 2.0, 2.0, 2.0], [2.0, 2.0, 2.0, 2.0], [
-                     2.0, 2.0, 2.0, 2.0], [2.0, 2.0, 2.0, 2.0]]), mstype.float64)
+y = mindspore.Tensor(
+    np.array([[8, 4, 2, 1], [8, 4, 2, 1], [8, 4, 2, 1], [8, 4, 2, 1]]), mindspore.int32
+)
+z = mindspore.Tensor(
+    np.array(
+        [
+            [2.0, 2.0, 2.0, 2.0],
+            [2.0, 2.0, 2.0, 2.0],
+            [2.0, 2.0, 2.0, 2.0],
+            [2.0, 2.0, 2.0, 2.0],
+        ]
+    ),
+    mstype.float64,
+)
 
 b1 = Tensor(np.array([True, True, True, False]), mindspore.bool_)
 b2 = Tensor(np.array([[True, True], [False, False]]), mstype.bool_)
@@ -28,11 +38,11 @@ a = Tensor(np.ones(shape=[4, 2]), mindspore.float32)
 b = Tensor(np.ones(shape=[2, 4]), mindspore.float32)
 
 # 张量的算术运算
-print(x, x+2, x-2, x*2, x**2)
+print(x, x + 2, x - 2, x * 2, x**2)
 print(y)
-print(y+2)
+print(y + 2)
 print(z)
-print(y*z)
+print(y * z)
 print(b1)
 print(b2)
 

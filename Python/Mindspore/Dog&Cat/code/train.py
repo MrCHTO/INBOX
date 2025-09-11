@@ -9,18 +9,28 @@ from src.dataset import extract_features
 from src.lr_generator import get_lr
 from src.config import set_config
 from src.args import train_parse_args
-from src.utils import context_device_init, export_mindir, predict_from_net, get_samples_from_eval_dataset
-from src.models import CrossEntropyWithLabelSmooth, define_net, load_ckpt, get_networks, train
+from src.utils import (
+    context_device_init,
+    export_mindir,
+    predict_from_net,
+    get_samples_from_eval_dataset,
+)
+from src.models import (
+    CrossEntropyWithLabelSmooth,
+    define_net,
+    load_ckpt,
+    get_networks,
+    train,
+)
 
 set_seed(1)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     args_opt = train_parse_args()
     config = set_config(args_opt)
     start = time.time()
 
     context_device_init(config)
-
 
     backbone_net, head_net, net = define_net(config, activation="Softmax")
 
@@ -33,18 +43,28 @@ if __name__ == '__main__':
 
     if config.label_smooth > 0:
         loss = CrossEntropyWithLabelSmooth(
-            smooth_factor=config.label_smooth, num_classes=config.num_classes)
+            smooth_factor=config.label_smooth, num_classes=config.num_classes
+        )
     else:
-        loss = SoftmaxCrossEntropyWithLogits(sparse=True, reduction='mean')
+        loss = SoftmaxCrossEntropyWithLogits(sparse=True, reduction="mean")
 
-    lr = Tensor(get_lr(global_step=0,
-                       lr_init=config.lr_init,
-                       lr_end=config.lr_end,
-                       lr_max=config.lr_max,
-                       warmup_epochs=config.warmup_epochs,
-                       total_epochs=config.epoch_size,
-                       steps_per_epoch=step_size))
-    opt = Momentum(filter(lambda x: x.requires_grad, head_net.get_parameters()), lr, config.momentum, config.weight_decay)
+    lr = Tensor(
+        get_lr(
+            global_step=0,
+            lr_init=config.lr_init,
+            lr_end=config.lr_end,
+            lr_max=config.lr_max,
+            warmup_epochs=config.warmup_epochs,
+            total_epochs=config.epoch_size,
+            steps_per_epoch=step_size,
+        )
+    )
+    opt = Momentum(
+        filter(lambda x: x.requires_grad, head_net.get_parameters()),
+        lr,
+        config.momentum,
+        config.weight_decay,
+    )
 
     train_net, eval_net = get_networks(head_net, loss, opt)
     train(train_net, eval_net, net, data, config)
