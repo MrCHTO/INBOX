@@ -1,0 +1,30 @@
+服务端相关-Serves
+    int socket(int domain, int type, int protocol)
+    声明一个套接字描述符
+    {
+        domain:指明网络层协议 AF_UNIX(UNIX预套接字协议),AF_INET(IPV4协议)
+        type:指明运输层协议 SOCK_STREAM(TCP协议),SOCK_DGRAM(UDP协议)
+        protocol:为0
+    }
+    int bind(int scoket_fd, const struct sockaddr *sa, socklen_t sa_len)
+    将套接字描述符和套接字地址绑定
+    {
+        scoket_fd：服务器套接字描述符
+        sockaddr *sa：套接字地址结构
+        sa_len：
+    }
+    int listen(int sockfd, int backlog)
+    将主动套接字转化为被动套接字
+    {
+        sockfd：套接字描述符
+        backlog：5 代表已经完成两次握手加上完成三次握手
+    }
+    int accept(int sockfd, struct sockaddr *chiladdr, socklen_t *addrlen)
+    返回用于收据传输的套接字
+    {
+    }
+客户端相关-client
+    int connect(int sockfd, const struct sockaddr *servaddr,socklen_t addrlen)
+    返回用于收据传输的套接字
+    {
+    }
